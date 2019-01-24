@@ -1,17 +1,27 @@
 {
   "name": "punssi-buddy",
   "version": "1.0.0",
-  "description": "",
+  "description": "Desktop assistant that reminds you when it's time to get beer.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
+  "author": "Rauli Laine <rauli.laine@iki.fi> (https://rauli.pw)",
   "license": "MIT",
+  "engines": {
+    "node": ">=8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:RauliL/punssi-buddy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RauliL/punssi-buddy/issues"
+  },
   "dependencies": {
     "gui": "^0.6.0",
     "lame": "^1.2.4",
     "node-schedule": "^1.3.1",
     "speaker": "^0.4.1"
+  },
+  "bin": {
+    "punssi-buddy": "./index.js"
   }
 }

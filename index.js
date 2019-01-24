@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const gui = require('gui');
 const lame = require('lame');
