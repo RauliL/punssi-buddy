@@ -12,6 +12,7 @@ const assistantImages = [0, 1, 2, 3, 4].map((index) => (
 const assistantSounds = [0, 1, 2, 3].map((index) => (
   path.join(__dirname, 'sounds', `${index}.mp3`)
 ));
+const scheduledJobs = [];
 
 const win = gui.Window.create({
   frame: false,
@@ -42,43 +43,53 @@ const playSound = (index) => {
 };
 
 const initializeSchedules = () => {
-  schedule.scheduleJob('0 30 15 * * 5', () => {
-    currentImageIndex = 1;
-    contentView.schedulePaint();
-    playSound(0);
-  });
+  const scheduleInfo = [
+    {
+      hour: 15,
+      minute: 30,
+      image: 1,
+      sound: 0
+    },
+    {
+      hour: 15,
+      minute: 45,
+      image: 2,
+      sound: 1
+    },
+    {
+      hour: 16,
+      minute: 0,
+      image: 3,
+      sound: 2
+    },
+    {
+      hour: 16,
+      minute: 15,
+      image: 4,
+      sound: 3
+    }
+  ];
 
-  schedule.scheduleJob('0 31 15 * * 5', () => {
-    currentImageIndex = 0;
-    contentView.schedulePaint();
-  });
-
-  schedule.scheduleJob('0 45 15 * * 5', () => {
-    currentImageIndex = 2;
-    contentView.schedulePaint();
-    playSound(1);
-  });
-
-  schedule.scheduleJob('0 46 15 * * 5', () => {
-    currentImageIndex = 0;
-    contentView.schedulePaint();
-  });
-
-  schedule.scheduleJob('0 0 16 * * 5', () => {
-    currentImageIndex = 3;
-    contentView.schedulePaint();
-    playSound(2);
-  });
-
-  schedule.scheduleJob('0 1 16 * * 5', () => {
-    currentImageIndex = 0;
-    contentView.schedulePaint();
-  });
-
-  schedule.scheduleJob('0 15 16 * * 5', () => {
-    currentImageIndex = 4;
-    contentView.schedulePaint();
-    playSound(3);
+  scheduleInfo.forEach((info) => {
+    scheduledJobs.push(schedule.scheduleJob(
+      `0 ${info.minute} ${info.hour} * * 5`,
+      () => {
+        if (typeof info.image !== 'undefined') {
+          currentImageIndex = info.image;
+          contentView.schedulePaint();
+        }
+        if (typeof info.sound !== 'undefined') {
+          playSound(info.sound);
+        }
+      }
+    ));
+    scheduledJobs.push(schedule.scheduleJob(
+      `0 ${info.minute + 1} ${info.hour} * * 5`,
+      () => {
+        currentImageIndex = 0;
+        contentView.schedulePaint();
+      }
+    ));
   });
 };
 

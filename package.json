@@ -23,5 +23,8 @@
   },
   "bin": {
     "punssi-buddy": "./index.js"
+  },
+  "scripts": {
+    "start": "./index.js"
   }
 }
