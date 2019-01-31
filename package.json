@@ -1,6 +1,6 @@
 {
   "name": "punssi-buddy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Desktop assistant that reminds you when it's time to get beer.",
   "main": "index.js",
   "author": "Rauli Laine <rauli.laine@iki.fi> (https://rauli.pw)",
