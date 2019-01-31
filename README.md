@@ -18,7 +18,13 @@ $ npm install -g punssi-buddy
 
 After that, you can run the command `punssi-buddy` to start the application.
 
-## How do I close that damn thing?
+## FAQ
+
+### Can I configure schedule of Punssi-Buddy somehow?
+
+No.
+
+### How do I close that damn thing?
 
 Use utility like `xkill` or just kill the process from command line or
 something.
